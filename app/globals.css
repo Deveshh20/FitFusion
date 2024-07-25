@@ -2,32 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* Custom scrollbar styles */
+.scrollable-container {
+  height: 80vh;
+  width: 70vw;
+  background-color: #f0f0f0; /* Adjust to match your design */
+  border-radius: 8px; /* Rounded corners */
+  border: 1px solid #ddd; /* Border color */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/* The container for the scrollbar */
+.scrollable-container::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* The track (background) of the scrollbar */
+.scrollable-container::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Track color */
+  border-radius: 8px; /* Rounded corners for the track */
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* The handle of the scrollbar */
+.scrollable-container::-webkit-scrollbar-thumb {
+  background: #888; /* Handle color */
+  border-radius: 50px; /* Rounded corners for the handle */
 }
+
+/* The handle on hover */
+.scrollable-container::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker handle color on hover */
+}
+/* Custom scrollbar styles for Firefox */
+.scrollable-container {
+  scrollbar-width: none; /* Thin scrollbar */
+  scrollbar-color: #FFFFFF; /* Handle color and track color */
+}
+  

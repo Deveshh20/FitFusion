@@ -19,8 +19,10 @@
     ],
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    "target": "ES2015", // Ensure this is set to ES2015 or higher
+    "downlevelIteration": true // Add this to enable iteration support
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/userContext.jsx"],
   "exclude": ["node_modules"]
 }
