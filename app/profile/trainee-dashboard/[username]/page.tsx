@@ -7,6 +7,7 @@ import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 import logo from '@/app/asset/logo.png'; // Replace with the actual path to your logo
 import axios from 'axios'; // Import axios for making HTTP requests
 import { useRouter } from 'next/navigation';
+import { toast } from "react-hot-toast";
 
 const TrainerDashboard = ({ params }: { params: { username: string } }) => {
   const router=useRouter()
@@ -24,6 +25,17 @@ const TrainerDashboard = ({ params }: { params: { username: string } }) => {
     dob: null as Date | null,
     photo: ''
   })
+
+  const logout = async () => {
+    try {
+      await axios.get("/api/users/logout");
+      toast.success("Logout successful");
+      router.push("/");
+    } catch (error: any) {
+      console.log(error.message);
+      toast.error(error.message);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -197,7 +209,7 @@ const TrainerDashboard = ({ params }: { params: { username: string } }) => {
           <button type="submit" className="text-neutral-100 font-semibold px-4 py-3 hover:shadow-2xl rounded-lg mt-6 max-w-[200px] bg-stone-900">
             Save changes
           </button>
-          <button type="submit" className="text-stone-900 font-semibold px-6 py-3 hover:shadow-2xl rounded-lg mt-6 max-w-[200px] bg-neutral-200 ml-8"onClick={() => router.push(`/profile/trainer-dashboard/${username}`)}>
+          <button type="submit" className="text-stone-900 font-semibold px-6 py-3 hover:shadow-2xl rounded-lg mt-6 max-w-[200px] bg-neutral-200 ml-8"onClick={logout}>
             Cancel
           </button>
         </form>
