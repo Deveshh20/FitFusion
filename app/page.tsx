@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from 'next/link'
 import logo from '@/app/asset/logo.png'
+import homeimg from '@/app/asset/homeimg.png'
 import { FlipWords } from "./ui/FlipWords";
 export default function Home() {
     const words = ["strong", "healthy", "fit", "powerful", "balanced"]
@@ -38,6 +39,7 @@ export default function Home() {
         </div>
         </nav>
         {/* Home */}
+        <div className="flex justify-between w-screen">
         <div className="h-[40rem] flex pl-24 pt-10 justify-center flex-col items-start px-4">
       <div className="text-5xl font-normal text-neutral-600 dark:text-neutral-400">
         Achieve 
@@ -49,6 +51,8 @@ export default function Home() {
       <button className="text-neutral-100 font-semibold px-4 py-3 hover:shadow-2xl rounded-lg mt-6 w-[170px] bg-stone-900">Get Started!</button>
       </div>
     </div>
+        <Image src={homeimg} width={600} alt="homeimg" className="mt-14 mr-10 "/>
+        </div>
     </div>
   );
 }
