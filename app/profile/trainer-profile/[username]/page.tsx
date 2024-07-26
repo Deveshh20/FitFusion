@@ -89,7 +89,7 @@ export default function SidebarDemo() {
             {open ? <Logo /> : <LogoIcon />}
             <div className="mt-8 flex flex-col gap-2">
               {links.map((link, idx) => (
-                <SidebarLink key={idx} link={link} onClick={link.onClick} />
+                <SidebarLink key={idx} link={link} />
               ))}
             </div>
           </div>
