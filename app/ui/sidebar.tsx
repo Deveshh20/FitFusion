@@ -166,17 +166,24 @@ export const SidebarLink = ({
   props?: LinkProps;
 }) => {
   const { open, animate } = useSidebar();
+  const handleClick = (e: React.MouseEvent) => {
+    if (link.onClick) {
+      e.preventDefault();
+      link.onClick();
+    }
+  };
+
   return (
     <Link
       href={link.href}
       className={cn(
-        "flex items-center justify-start gap-2  group/sidebar py-2",
+        "flex items-center justify-start gap-2 group/sidebar py-2",
         className
       )}
+      onClick={handleClick}
       {...props}
     >
       {link.icon}
-
       <motion.span
         animate={{
           display: animate ? (open ? "inline-block" : "none") : "inline-block",
@@ -189,3 +196,4 @@ export const SidebarLink = ({
     </Link>
   );
 };
+
