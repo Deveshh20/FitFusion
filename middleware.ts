@@ -8,7 +8,7 @@ export function middleware(request: NextRequest) {
     const token = request.cookies.get('token')?.value || "";
 
     if (isPublicPath && token && path !== '/') {
-        return NextResponse.redirect(new URL('/profile', request.url));
+        return NextResponse.redirect(new URL(`/profile/trainee-profile/`, request.url));
     }
 
     if (!isPublicPath && !token) {

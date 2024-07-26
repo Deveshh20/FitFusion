@@ -1,6 +1,7 @@
 import { connect } from '@/dbConfig/dbConfig';
 import User from '@/models/userModel';
 import TraineeDetails from '@/models/traineeModel'
+import TrainerDetails from '@/models/trainerModel'
 import { NextRequest, NextResponse } from 'next/server';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -30,7 +31,7 @@ export async function POST(request: NextRequest) {
         let profileCompleted = false;
         // If the user is a trainer, check their profile completion status
         if (user.role === 'trainer') {
-            const trainer = await TraineeDetails.findOne({username:user.username});
+            const trainer = await TrainerDetails.findOne({username:user.username});
             if (trainer) {
                 profileCompleted = trainer.profileCompleted;
             }

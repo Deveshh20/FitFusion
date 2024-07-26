@@ -19,34 +19,29 @@ export default function LoginPage() {
 
     const onLogin = async (e: any) => {
         e.preventDefault(); // Prevents the default form submission behavior
-
+    
         try {
             setLoading(true);
             const response = await axios.post("/api/users/login", user);
             console.log("Login Success", response.data);
-
+    
             const { role, username, profileCompleted } = response.data;
-            // Replace spaces with hyphens in the username
-            //  const formattedUsername = username.replace(/\s+/g, '-');
-
-            // Redirect based on the user's role
+    
+            // Redirect based on the user's role and profile completion status
             if (role === 'trainer') {
                 if (profileCompleted) {
                     router.push(`/profile/trainer-profile/${username}`);
+                } else {
+                    router.push(`/profile/trainer-dashboard/${username}`);
                 }
-                else {
-                    router.push(`/profile/trainer-dashboard/${username}`); // Use dynamic route for trainer    
-                }
-
             } else if (role === 'trainee') {
                 if (profileCompleted) {
                     router.push(`/profile/trainee-profile/${username}`);
-                }
-                else {
-                    router.push(`/profile/trainee-dashboard/${username}`); // Use dynamic route for trainer    
+                } else {
+                    router.push(`/profile/trainee-dashboard/${username}`);
                 }
             }
-
+    
         } catch (error: any) {
             console.log('Login failed');
             toast.error(error.message);
@@ -54,6 +49,7 @@ export default function LoginPage() {
             setLoading(false);
         }
     };
+    
 
     useEffect(() => {
         if (user.email.length > 0 && user.password.length > 0) {
