@@ -6,7 +6,7 @@
 .scrollable-container {
   height: 80vh;
   width: 70vw;
-  background-color: #f0f0f0; /* Adjust to match your design */
+  background-color: white; /* Adjust to match your design */
   border-radius: 8px; /* Rounded corners */
   border: 1px solid #ddd; /* Border color */
   overflow-y: auto; /* Enable vertical scrolling */

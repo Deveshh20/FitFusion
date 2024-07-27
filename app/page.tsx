@@ -9,20 +9,20 @@ export default function Home() {
     <div>
       {/* Navbar */}
         <nav>
-        <div className="absolute flex items-center h-fit justify-between w-screen top-0 text-stone-900">
-            <ul className="flex items-center ml-20 gap-x-8">
+        <div className="absolute flex items-center md:h-fit justify-between w-screen top-0 text-stone-900">
+            <ul className="flex items-center md:ml-20 ml-2 gap-x-8">
                 <li className="flex items-center">
                     <Image src={logo} alt="logo" className="w-16 mr-[-0.6rem]" />
                     <h1 className="text-xl font-bold">FitFusion</h1>
                 </li>
                 <li>
-                    <Link href='/' className="text-neutral-600 hover:text-stone-900">Workout Plan</Link>
+                    <Link href='/' className="text-neutral-600 hover:text-stone-900 hidden md:block">Workout Plan</Link>
                 </li>
                 <li>
-                    <Link href='/' className="text-neutral-600 hover:text-stone-900">Diet Plan</Link>
+                    <Link href='/' className="text-neutral-600 hover:text-stone-900 hidden md:block">Diet Plan</Link>
                 </li>
             </ul>
-            <ul className="flex gap-x-4 mr-20">
+            <ul className="flex gap-x-4 md:mr-20 mr-4">
                 <li>
                     <Link href='/login' className="relative group text-lg text-neutral-600 hover:text-stone-900">
                         Login
@@ -40,8 +40,8 @@ export default function Home() {
         </nav>
         {/* Home */}
         <div className="flex justify-between w-screen">
-        <div className="h-[40rem] flex pl-24 pt-10 justify-center flex-col items-start px-4">
-      <div className="text-5xl font-normal text-neutral-600 dark:text-neutral-400">
+        <div className="h-[40rem] flex md:pl-24 md:pt-10 mt-10 justify-center flex-col md:items-start px-4">
+      <div className="md:text-5xl text-5xl font-normal text-neutral-600 dark:text-neutral-400">
         Achieve 
         <FlipWords words={words} /> <br />
         fitness goals with FitFusion
@@ -51,7 +51,7 @@ export default function Home() {
       <button className="text-neutral-100 font-semibold px-4 py-3 hover:shadow-2xl rounded-lg mt-6 w-[170px] bg-stone-900">Get Started!</button>
       </div>
     </div>
-        <Image src={homeimg} width={600} alt="homeimg" className="mt-14 mr-10 "/>
+        <Image src={homeimg} width={600} alt="homeimg" className="mt-14 mr-10  hidden md:block"/>
         </div>
     </div>
   );

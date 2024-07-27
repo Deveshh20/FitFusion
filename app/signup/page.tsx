@@ -45,12 +45,12 @@ export default function SignupPage() {
     }, [user]);
 
     return (
-        <div className="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center px-6 py-8">
+        <div className=" rounded-lg shadow-2xl md:min-h-screen  flex items-center justify-center px-6 py-8">
             <Head>
                 <title>Create an Account</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 space-y-6">
+            <div className="w-full max-w-md bg-white/85 dark:bg-gray-800 rounded-lg shadow-2xl p-6 space-y-6">
                 <a href="#" className="flex items-center justify-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
                     <Image src={logo} className="w-16 h-18" alt='logo' />
                     FitFusion

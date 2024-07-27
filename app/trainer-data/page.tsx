@@ -24,12 +24,12 @@ const TrainerDataPage = () => {
   }
 
   return (
-    <div className='h-[60vh] w-[60vw] bg-neutral-100 text-stone-800 absolute left-[250px] mt-20 rounded-2xl border overflow-hidden border-neutral-200  scrollable-container'>
+    <div className='h-[60vh] w-[60vw] bg-white shadow-2xl text-stone-800 absolute left-[250px] mt-20 rounded-2xl border overflow-hidden border-neutral-200  scrollable-container'>
       <h1 className='p-4 text-stone-800 font-semibold text-3xl'>Hire your Trainer!</h1>
-      <div className='p-4'>
+      <div className='p-4 '>
         {trainersData.map((trainer) => (
           <div key={trainer._id} className='mb-4 flex bg-white w-full px-4 py-4 rounded-2xl h-24 items-center justify-between'>
-            <div className='flex items-center'>
+            <div className='flex items-center '>
               <UserCircleIcon className='h-16 w-16 text-gray-400 mr-4' /> {/* Profile Icon */}
               <div className='flex flex-col'>
                 <div>

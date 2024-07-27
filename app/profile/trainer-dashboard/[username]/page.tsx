@@ -51,12 +51,8 @@ const TrainerDashboard = ({ params }: { params: { username: string } }) => {
   };
 
   return (
-    <div className=" absolute left-[300px] min-h-screen max-w-[900px] flex items-center justify-center px-6 py-8">
-      <Head>
-        <title>Sign Up as Trainer</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div className="w-full max-w-screen bg-white/85 dark:bg-gray-800 rounded-lg shadow-2xl p-6 space-y-6">
+
+      <div className="absolute left-[250px] mt-4  bg-white/85 md:h-fit md:w-[1100px] dark:bg-gray-800 rounded-lg shadow-2xl p-6 space-y-6">
 
         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-4xl dark:text-white">
           Add Trainer Details
@@ -66,10 +62,10 @@ const TrainerDashboard = ({ params }: { params: { username: string } }) => {
           <h2 className="text-lg font-semibold leading-tight tracking-tight text-gray-900 md:text-xl dark:text-white">
             Personal Information:
           </h2>
-          <div className='max-w-full gap-x-10 justify-between flex-col border-t-2 border-b-2 border-gray-500 px-4 py-4 rounded'>
+          <div className='md:max-w-full md:gap-x-10 md:justify-between md:flex-col flex border-t-2 border-b-2 border-gray-500 py-2 rounded'>
             {/* here */}
             {/* end here */}
-            <div className='max-w-full gap-x-10 justify-between flex mt-10 px-4 py-4 rounded-lg'>
+            <div className='md:max-w-full w-full space-y-3 rounded-lg'>
             <div>
               <label htmlFor="fullname" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Full Name</label>
               <input
@@ -78,7 +74,7 @@ const TrainerDashboard = ({ params }: { params: { username: string } }) => {
                 id="fullname"
                 value={trainer.fullname}
                 onChange={(e) => setTrainer({ ...trainer, fullname: e.target.value })}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 border-b-2"
                 placeholder="Your name"
                 required
               />
@@ -119,10 +115,10 @@ const TrainerDashboard = ({ params }: { params: { username: string } }) => {
                 id="gender"
                 value={trainer.gender}
                 onChange={(e) => setTrainer({ ...trainer, gender: e.target.value })}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
                 required
               >
-                <option value="">Select your gender</option>
+                <option value=""disabled selected hidden>Select your gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="N/A">Prefer not to say</option>
@@ -134,7 +130,7 @@ const TrainerDashboard = ({ params }: { params: { username: string } }) => {
               <DatePicker
                 selected={trainer.dob}
                 onChange={(date: Date | null) => setTrainer({ ...trainer, dob: date })}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block md:w-[1055px] w-[375px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 border-t-2 mb-3"
                 dateFormat="yyyy-MM-dd"
                 placeholderText="Select date"
               />
@@ -147,7 +143,7 @@ const TrainerDashboard = ({ params }: { params: { username: string } }) => {
           <h2 className="text-lg font-semibold leading-tight tracking-tight text-gray-900 md:text-xl dark:text-white">
           Professional Information
           </h2>
-          <div className=''>
+          <div className='space-y-3'>
           <div>
             <label htmlFor="experienceLevel" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Experience Level</label>
             <input
@@ -213,7 +209,6 @@ const TrainerDashboard = ({ params }: { params: { username: string } }) => {
           </button>
         </form>
       </div>
-    </div>
   );
 };
 
