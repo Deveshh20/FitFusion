@@ -17,7 +17,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import logo from '@/app/asset/logo.png';
 import { cn } from "@/app/lib/utils";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
@@ -126,6 +126,8 @@ const LogoIcon = () => (
 
 const Dashboard = () => {
   const router = useRouter(); // Define router inside Dashboard
+  const pathname = usePathname();
+  const username = pathname.split("/").pop();
   const dummyData = {
     overview: "This is an overview of your activities and progress.",
     clients: [
@@ -206,7 +208,7 @@ const Dashboard = () => {
             <p>{dummyData.progressTracking}</p>
           </div>
         </div>
-        <button className="text-neutral-100 font-semibold px-4 py-3 hover:shadow-2xl ml-[490px] rounded-lg mt-6 max-w-[200px] bg-stone-900" onClick={() => router.push('/trainer-data')}>Hire Your Trainer!</button>
+        <button className="text-neutral-100 font-semibold px-4 py-3 hover:shadow-2xl ml-[490px] rounded-lg mt-6 max-w-[200px] bg-stone-900" onClick={() => router.push(`/trainer-data/${username}`)}>Hire Your Trainer!</button>
       </div>
     </div>
   );

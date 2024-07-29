@@ -1,18 +1,17 @@
 import mongoose from 'mongoose';
-import { type } from 'os';
 
 const trainerSchema = new mongoose.Schema({
-    username:{
-        type:String,
-        required:true
+    username: {
+        type: String,
+        required: true
     },
     fullname: {
         type: String,
         required: [true, 'Please provide Full Name']
     },
-    email:{
-        type:String,
-        required:[true,'Please provide your email address']
+    email: {
+        type: String,
+        required: [true, 'Please provide your email address']
     },
     phone: {
         type: String,
@@ -45,7 +44,8 @@ const trainerSchema = new mongoose.Schema({
     profileCompleted: {
         type: Boolean,
         default: false // Set default to false
-    }
+    },
+    clients: [{ type: mongoose.Schema.Types.ObjectId, ref: 'TraineeDetails' }] // Add this line
 });
 
 export default mongoose.models.TrainerDetails || mongoose.model('TrainerDetails', trainerSchema);

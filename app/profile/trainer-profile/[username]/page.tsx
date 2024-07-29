@@ -22,8 +22,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 export default function SidebarDemo() {
-  const router = useRouter();
-
+  const router=useRouter()
   const logout = async () => {
     try {
       await axios.get("/api/users/logout");
@@ -80,6 +79,7 @@ export default function SidebarDemo() {
   ];
 
   const [open, setOpen] = useState(false);
+ 
 
   return (
     <div className={cn("rounded-xl shadow-lg flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-[90vw] mt-10 flex-1 mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden", "h-[90vh]")}>
