@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from 'next/link'
 import logo from '@/app/asset/logo.png'
+import heroimg from '@/app/asset/heroimg.png'
 import homeimg from '@/app/asset/homeimg.png'
 import { FlipWords } from "./ui/FlipWords";
 export default function Home() {
@@ -53,6 +54,15 @@ export default function Home() {
     </div>
         <Image src={homeimg} width={600} alt="homeimg" className="mt-14 mr-10  hidden md:block"/>
         </div>
+
+    {/* Hero-Page */}
+    <div className="mt-10">
+        {/* <Image src={heroimg} width={700} alt=""/>
+        <div>
+        <h2>Start your new Journey</h2>
+        <p className='text-neutral-600 text-lg mt-4 font-semibold '>Fill up the required details and hire you tainer according to your preferences</p>
+        </div> */}
+    </div>
     </div>
   );
 }

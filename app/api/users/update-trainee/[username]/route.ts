@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
         const reqBody = await request.json();
         console.log(reqBody);
         
-        const { username, fullname, email, phone, gender, experienceLevel, specialties, certifications, bio, dob, photo } = reqBody;
+        const { username, fullname, email, phone, gender, dob, height, weight, bmi, fitnessGoals, medicalConditions, preferredWorkoutTypes, workoutFrequency, preferredWorkoutTimes, fitnessLevel, dietaryRestrictions, dailyCaloricIntakeGoal, preferredMealTypes, foodAllergies} = reqBody;
 
         // Ensure username is defined
         const user = await User.findOne({ username });
@@ -23,13 +23,23 @@ export async function POST(request: NextRequest) {
             email,
             phone,
             gender,
-            experienceLevel,
-            specialties,
-            certifications,
-            bio,
             dob,
-            profileCompleted:true
-        });
+            height,
+            weight,
+            bmi,
+            fitnessGoals,
+            medicalConditions,
+            preferredWorkoutTypes,
+            workoutFrequency,
+            preferredWorkoutTimes,
+            fitnessLevel,
+            dietaryRestrictions,
+            dailyCaloricIntakeGoal,
+            preferredMealTypes,
+            foodAllergies,
+            profileCompleted: true
+        },
+        );
 
         await traineeDetails.save();
         console.log(traineeDetails);

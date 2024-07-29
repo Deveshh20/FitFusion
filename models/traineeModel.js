@@ -1,18 +1,17 @@
 import mongoose from 'mongoose';
-import { type } from 'os';
 
 const traineeSchema = new mongoose.Schema({
-    username:{
-        type:String,
-        required:true
+    username: {
+        type: String,
+        required: true
     },
     fullname: {
         type: String,
         required: [true, 'Please provide Full Name']
     },
-    email:{
-        type:String,
-        required:[true,'Please provide your email address']
+    email: {
+        type: String,
+        required: [true, 'Please provide your email address']
     },
     phone: {
         type: String,
@@ -22,25 +21,61 @@ const traineeSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    experienceLevel: {
-        type: Number,
-        required: true
-    },
-    specialties: {
-        type: String,
-        required: [true, 'Enter your specialties in training']
-    },
-    certifications: {
-        type: String,
-        required: [true, 'Enter your certifications']
-    },
-    bio: {
-        type: String,
-        required: [true, 'Enter some details about your training']
-    },
     dob: {
         type: Date,
         required: [true, 'Enter your Date of Birth']
+    },
+    height: {
+        type: String,
+        required: [true, 'Please provide your height']
+    },
+    weight: {
+        type: String,
+        required: [true, 'Please provide your weight']
+    },
+    bmi: {
+        type: String,
+        required: [true, 'Please provide your BMI']
+    },
+    fitnessGoals: {
+        type: String,
+        required: [true, 'Please provide your fitness goals']
+    },
+    medicalConditions: {
+        type: String,
+        required: [true, 'Please provide any medical conditions']
+    },
+    preferredWorkoutTypes: {
+        type: String,
+        required: [true, 'Please provide your preferred workout types']
+    },
+    workoutFrequency: {
+        type: String,
+        required: [true, 'Please provide your workout frequency']
+    },
+    preferredWorkoutTimes: {
+        type: String,
+        required: [true, 'Please provide your preferred workout times']
+    },
+    fitnessLevel: {
+        type: String,
+        required: [true, 'Please provide your fitness level']
+    },
+    dietaryRestrictions: {
+        type: String,
+        required: [true, 'Please provide any dietary restrictions']
+    },
+    dailyCaloricIntakeGoal: {
+        type: String,
+        required: [true, 'Please provide your daily caloric intake goal']
+    },
+    preferredMealTypes: {
+        type: String,
+        required: [true, 'Please provide your preferred meal types']
+    },
+    foodAllergies: {
+        type: String,
+        required: [true, 'Please provide any food allergies']
     },
     profileCompleted: {
         type: Boolean,
