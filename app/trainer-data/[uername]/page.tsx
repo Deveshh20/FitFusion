@@ -5,8 +5,8 @@ import { UserCircleIcon } from '@heroicons/react/24/solid'; // Import the UserCi
 import { usePathname } from 'next/navigation';
 
 const TrainerDataPage = () => {
-  const pathname =usePathname();
-  const username=pathname.split('/').pop()
+  const pathname = usePathname();
+  const username = pathname.split('/').pop();
   const [trainersData, setTrainersData] = useState<any[]>([]); // Use a proper type if you have one
   const [showPopup, setShowPopup] = useState(false);
   const [selectedTrainer, setSelectedTrainer] = useState<any>(null);
@@ -29,16 +29,16 @@ const TrainerDataPage = () => {
     setShowPopup(true);
   };
 
-  const handleSendMessage = async () => {
+  const handleSendRequest = async () => {
     try {
       await axios.post('/api/users/request', {
-        traineeName:username,
+        traineeName: username,
         trainerId: selectedTrainer._id,
-        message: 'A client has asked for training.',
       });
-      alert('Message sent to the trainer!');
+      alert('Request sent to the trainer!');
     } catch (error) {
-      console.error('Error sending message:', error);
+      console.error('Error sending request:', error);
+      alert('Failed to send request to the trainer.');
     } finally {
       setShowPopup(false);
     }
@@ -70,7 +70,7 @@ const TrainerDataPage = () => {
               className="text-neutral-100 font-semibold px-4 py-2 hover:shadow-2xl rounded-lg bg-stone-900"
               onClick={() => handleContactClick(trainer)}
             >
-              Contact
+              Request
             </button>
           </div>
         ))}
@@ -79,12 +79,12 @@ const TrainerDataPage = () => {
       {showPopup && (
         <div className='fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50'>
           <div className='bg-white p-6 rounded-lg shadow-lg'>
-            <h2 className='text-lg font-semibold'>Message Trainer</h2>
+            <h2 className='text-lg font-semibold'>Request Trainer</h2>
             <p>Do you want to ask for training or message your trainer?</p>
             <div className='mt-4 flex justify-end'>
               <button 
                 className='px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 mr-2'
-                onClick={handleSendMessage}
+                onClick={handleSendRequest}
               >
                 Send
               </button>

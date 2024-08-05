@@ -1,28 +1,34 @@
 import { connect } from '@/dbConfig/dbConfig';
-import User from '@/models/userModel';
-import TraineeDetails from '@/models/traineeModel'
-import TrainerDetails from '@/models/trainerModel'
-import { NextRequest,NextResponse } from 'next/server';
+import Request from '@/models/requestModel';
+import TrainerDetails from '@/models/trainerModel';
+import TraineeDetails from '@/models/traineeModel';
+import { NextRequest, NextResponse } from 'next/server';
 
-connect()
+connect();
 
-export async function request(req:NextRequest) {
-    const reqBody=await req.json();
-    const{trainerId,traineeName,message}=reqBody
+export async function POST(req: NextRequest) {
+  try {
+    const reqBody = await req.json();
+    console.log('Request body:', reqBody);  // Log the request body
 
-    // const trainer=await TrainerDetails.findOne({trainerId})
-    // if(!trainer){
-    //     return NextResponse.json({ error: "User does not exist" }, { status: 400 });
-    // }
-    try {
-        await TrainerDetails.findByIdAndUpdate(
-            trainerId,
-            { $addToSet: { clients: traineeName } }, // Use $addToSet to avoid duplicates
-            { new: true } // Return the updated document
-          );
-          return NextResponse.json({ mssg: "client added" }, { status: 200 });
-    } catch (error:any) {
-        return NextResponse.json({error:"something went worng in adding the client"},{status:400})
+    const { trainerId, traineeName } = reqBody;
+
+    const trainee = await TraineeDetails.findOne({ username: traineeName });
+    if (!trainee) {
+      return NextResponse.json({ error: 'Trainee does not exist' }, { status: 405 });
     }
 
+    const request = new Request({
+      trainerId,
+      traineeId: trainee._id,
+      status: 'pending',
+    });
+
+    await request.save();
+
+    return NextResponse.json({ message: 'Request sent successfully' }, { status: 200 });
+  } catch (error: any) {
+    console.error('Error:', error);  // Log the error
+    return NextResponse.json({ error: 'Something went wrong' }, { status: 400 });
+  }
 }

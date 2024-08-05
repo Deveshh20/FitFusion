@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "@/app/ui/sidebar";
 import {
   IconArrowLeft,
-  IconBrandTabler,
   IconSettings,
   IconUserBolt,
   IconCalendar,
@@ -17,12 +16,15 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import logo from '@/app/asset/logo.png';
 import { cn } from "@/app/lib/utils";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
 export default function SidebarDemo() {
-  const router=useRouter()
+  const router = useRouter();
+  const pathname = usePathname();
+  const username = pathname.split("/").pop(); // Extract username from pathname
+
   const logout = async () => {
     try {
       await axios.get("/api/users/logout");
@@ -30,7 +32,7 @@ export default function SidebarDemo() {
       router.push("/");
     } catch (error: any) {
       console.log(error.message);
-      toast.error(error.message);
+      toast.error("Logout failed");
     }
   };
 
@@ -39,6 +41,13 @@ export default function SidebarDemo() {
       label: "Clients",
       href: "#",
       icon: <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />,
+      onClick: async () => { // Changed to async function
+        if (username) {
+          await router.push(`/clients/${username}`);
+        } else {
+          toast.error("Username not found");
+        }
+      }
     },
     {
       label: "Schedule",
@@ -48,7 +57,7 @@ export default function SidebarDemo() {
     {
       label: "Workout Plans",
       href: "#",
-      icon: <IconBell className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />, // Changed from IconDumbbell to IconBell
+      icon: <IconBell className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />,
     },
     {
       label: "Diet Plans",
@@ -74,12 +83,21 @@ export default function SidebarDemo() {
       label: "Logout",
       href: "#",
       icon: <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />,
-      onClick: logout,
+      onClick: async () => { // Changed to async function
+        try {
+          await axios.get("/api/users/logout");
+          toast.success("Logout successful");
+          router.push("/");
+        } catch (error: any) {
+          console.log(error.message);
+          toast.error("Logout failed");
+        }
+      },
     },
   ];
+  
 
   const [open, setOpen] = useState(false);
- 
 
   return (
     <div className={cn("rounded-xl shadow-lg flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-[90vw] mt-10 flex-1 mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden", "h-[90vh]")}>
