@@ -45,12 +45,14 @@ const trainerSchema = new mongoose.Schema({
         type: Boolean,
         default: false // Set default to false
     },
-    clients: [{ type: mongoose.Schema.Types.ObjectId, ref: 'TraineeDetails',  default: []}],
-    requests: [{
-        traineeId: { type: mongoose.Schema.Types.ObjectId, ref: 'TraineeDetails' },
-        fullname: String,
-        fitnessGoal: String
-    }]
+    clients: [{
+        clientId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'TraineeDetails' // Reference to TraineeDetails if needed
+        },
+        clientName: String
+    }],
 });
 
 export default mongoose.models.TrainerDetails || mongoose.model('TrainerDetails', trainerSchema);
+
