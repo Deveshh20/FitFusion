@@ -33,7 +33,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { username: 
 
       if (action === 'accept') {
           request.status = 'accepted';
-          trainer.clients.push(trainee._id); // Add trainee ID to trainer's clients array
+          trainer.clients.push(trainee._id);
           await trainer.save();
       } else if (action === 'reject') {
           request.status = 'rejected';

@@ -23,7 +23,7 @@ import { toast } from "react-hot-toast";
 export default function SidebarDemo() {
   const router = useRouter();
   const pathname = usePathname();
-  const username = pathname.split("/").pop(); // Extract username from pathname
+  const username = pathname.split("/").pop(); 
 
   const logout = async () => {
     try {
@@ -41,7 +41,7 @@ export default function SidebarDemo() {
       label: "Clients",
       href: "#",
       icon: <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />,
-      onClick: async () => { // Changed to async function
+      onClick: async () => { 
         if (username) {
           await router.push(`/clients/${username}`);
         } else {
@@ -73,6 +73,13 @@ export default function SidebarDemo() {
       label: "Messages",
       href: "#",
       icon: <IconMessage className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />,
+      onClick: async () => { 
+        if (username) {
+          await router.push(`/message/${username}`);
+        } else {
+          toast.error("Username not found");
+        }
+      }
     },
     {
       label: "Profile",
@@ -83,7 +90,7 @@ export default function SidebarDemo() {
       label: "Logout",
       href: "#",
       icon: <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />,
-      onClick: async () => { // Changed to async function
+      onClick: async () => { 
         try {
           await axios.get("/api/users/logout");
           toast.success("Logout successful");

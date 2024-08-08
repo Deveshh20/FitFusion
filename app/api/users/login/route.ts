@@ -47,15 +47,16 @@ export async function POST(request: NextRequest) {
             id: user._id,
             username: user.username,
             email: user.email,
-            role: user.role, // Include the role in the token data
+            role: user.role,
         };
         const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET!, { expiresIn: '1d' });
 
         const response = NextResponse.json({
             message: "Logged In Successfully",
             success: true,
-            role: user.role, // Include the role in the response
+            role: user.role,
             username: user.username,
+            password:user.password,
             profileCompleted
         });
 

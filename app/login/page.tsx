@@ -8,6 +8,7 @@ import logo from '@/app/asset/logo.png';
 import Image from "next/image";
 import Link from 'next/link';
 
+
 export default function LoginPage() {
     const router = useRouter();
     const [user, setUser] = useState({
@@ -16,17 +17,22 @@ export default function LoginPage() {
     });
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [loading, setLoading] = useState(false);
+    const[secret,setSecret]=useState("")
 
     const onLogin = async (e: any) => {
-        e.preventDefault(); // Prevents the default form submission behavior
+        e.preventDefault(); 
     
         try {
             setLoading(true);
             const response = await axios.post("/api/users/login", user);
             console.log("Login Success", response.data);
     
-            const { role, username, profileCompleted } = response.data;
-    
+            const { role, username, profileCompleted,password } = response.data;
+            console.log(password)
+            axios.put("https://api.chatengine.io/users/",{
+                username:username,
+                secret:password
+            },{headers:{"Private-key":'2b508d21-8c12-4e1e-9083-e67e1133c7a7'}})
             // Redirect based on the user's role and profile completion status
             if (role === 'trainer') {
                 if (profileCompleted) {

@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
         
         const { username, fullname, email, phone, gender, experienceLevel, specialties, certifications, bio, dob, photo } = reqBody;
 
-        // Ensure username is defined
+        
         const user = await User.findOne({ username });
         if (!user) {
             return NextResponse.json({ error: 'Cannot find the user' }, { status: 404 });

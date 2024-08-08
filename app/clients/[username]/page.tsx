@@ -60,7 +60,6 @@ const ClientPage = () => {
           action: action,
         });
         alert(`Request has been ${action}`);
-        // Refresh requests after handling
         fetchRequests();
       } catch (error: any) {
         console.error('Error sending request:', error);
@@ -96,7 +95,6 @@ const ClientPage = () => {
               <button onClick={()=>handelClick(request,"accept")}>Accept</button>
               <button onClick={()=>handelClick(request,"reject")}>Reject</button>
               </div>
-              {/* Display other client details if needed */}
             </li>
           ))}
         </ul>

@@ -9,7 +9,7 @@ connect();
 export async function POST(req: NextRequest) {
   try {
     const reqBody = await req.json();
-    console.log('Request body:', reqBody);  // Log the request body
+    console.log('Request body:', reqBody);  
 
     const { trainerId, traineeName } = reqBody;
 
@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ message: 'Request sent successfully' }, { status: 200 });
   } catch (error: any) {
-    console.error('Error:', error);  // Log the error
+    console.error('Error:', error); 
     return NextResponse.json({ error: 'Something went wrong' }, { status: 400 });
   }
 }
